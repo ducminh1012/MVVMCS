@@ -8,11 +8,11 @@
 import RxCocoa
 
 class SearchDetailViewModel {
-    var rowData = BehaviorRelay<SearchRow>(value: SearchRow())
+    var rowData = SearchRow()
     
     var didUpdateTitle: ((SearchRow) -> Void)?
     
     init(row: SearchRow) {
-        rowData.accept(row)
+        rowData = row
     }
 }

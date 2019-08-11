@@ -11,11 +11,11 @@ import UIKit
 class SearchSingleTableViewCell: UITableViewCell {
     
     var title = ""
-    var options = [String]()
+    var parameter: Parameter!
     
-    func setupLayout(title: String?, options: [Parameter]) {
-        textLabel?.text = title
-        detailTextLabel?.text = options.first?.value ?? "All"
-        self.options = options.map({$0.title})
+    func setupLayout(param: Parameter) {
+        self.parameter = param
+        textLabel?.text = param.title
+        detailTextLabel?.text = param.value
     }
 }

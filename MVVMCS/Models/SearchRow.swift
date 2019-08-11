@@ -17,22 +17,23 @@ enum SearchRowType {
 }
 
 struct SearchRow {
+    var index: Int!
     var type = SearchRowType.single
     var title: String?
-    var data = BehaviorRelay<[Parameter]>(value: [])
+    var params = BehaviorRelay<[Parameter]>(value: [])
     
-    static func single(title: String, data: [Parameter]) -> SearchRow {
-        return SearchRow(type: .single, title: title, data: data)
+    static func single(title: String, options: [Parameter]) -> SearchRow {
+        return SearchRow(type: .single, title: title, params: options)
     }
     
     static func fromTo(from: Parameter, to: Parameter) -> SearchRow {
-        return SearchRow(type: .fromTo, title: nil, data: [from, to])
+        return SearchRow(type: .fromTo, title: nil, params: [from, to])
     }
     
-    init(type: SearchRowType, title: String?, data: [Parameter]) {
+    init(type: SearchRowType, title: String?, params: [Parameter]) {
         self.type = type
         self.title = title
-        self.data = BehaviorRelay(value: data)
+        self.params = BehaviorRelay(value: params)
     }
     
     init(){

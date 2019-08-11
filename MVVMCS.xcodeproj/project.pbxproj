@@ -520,7 +520,7 @@
 		};
 		4C18481A22F03BF900D2D168 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = CC3E9B85C3F096C5722CC345 /* Pods-MVVMCS.debug.xcconfig */;
+			baseConfigurationReference = FE670BB1AE6BC30D51913A76 /* Pods-MVVMCS.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
@@ -542,7 +542,7 @@
 		};
 		4C18481B22F03BF900D2D168 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = A28B684DDF16B3CA7EE42EE5 /* Pods-MVVMCS.release.xcconfig */;
+			baseConfigurationReference = AB40D84D5119E7FAEC439841 /* Pods-MVVMCS.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;

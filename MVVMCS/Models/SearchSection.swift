@@ -11,20 +11,21 @@ import RxDataSources
 
 enum SearchSectionType {
     case makeModel
-    case year
+    case price
 }
 
 struct SearchSection {
+    var index: Int!
     var type = SearchSectionType.makeModel
-    var title = ""
+    var title: String?
     var items = [SearchRow]()
     
     static func makeModel(items: [SearchRow]) -> SearchSection {
         return SearchSection(type: .makeModel, items: items)
     }
     
-    static func year(items: [SearchRow]) -> SearchSection {
-        return SearchSection(type: .year, items: items)
+    static func price(items: [SearchRow]) -> SearchSection {
+        return SearchSection(type: .price, items: items)
     }
 }
 
