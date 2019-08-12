@@ -12,12 +12,12 @@ import RxCocoa
 
 class SearchForm {
     
-    var allSections = [SearchSection]()
+    var allSections = BehaviorRelay<[SearchSection]>(value: [])
     var makeSection = SearchSection(type: .makeModel, items: [])
     var priceSection = SearchSection(type: .price, items: [])
     
     init(sections: [SearchSection]) {
-        allSections = sections
+        allSections = BehaviorRelay(value: sections)
     }
 }
 

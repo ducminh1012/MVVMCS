@@ -41,7 +41,9 @@ class SearchDetailViewController: UIViewController, Storyboardable {
             var a = self.viewModel.rowData.params.value
             a[0].value = textfield.text
             self.viewModel.rowData.params.accept(a)
-//            self.viewModel.didUpdateTitle?(a)
+            var b = self.viewModel.rowData
+            b.params.accept(a)
+            self.viewModel.didUpdateTitle?(b)
             self.coordinator?.goBackHome()
         }.disposed(by: disposeBag)
         

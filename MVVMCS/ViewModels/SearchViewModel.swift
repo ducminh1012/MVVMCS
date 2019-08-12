@@ -24,7 +24,7 @@ struct SearchViewModel {
     var didTapBack: (() -> Void)?
     
     func detailViewModel(at indexPath: IndexPath) -> SearchDetailViewModel {
-        return SearchDetailViewModel(row: form.allSections[indexPath.section].items[indexPath.row])
+        return SearchDetailViewModel(row: form.allSections.value[indexPath.section].items[indexPath.row])
     }
 
     init() {
