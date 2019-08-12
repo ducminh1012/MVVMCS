@@ -50,14 +50,10 @@ extension SearchViewController {
         tableView.rx.itemSelected.subscribe({ (event) in
             let indexPath = event.element!
             self.coordinator?.showDetail(index: indexPath, in: self.navigationController!, callback: { rowData in
-                print("did select title \(rowData.title)")
-//                self.viewModel.form.allSections[0].items[0].params.accept(rowData.params.value)
+
                 var allSections = self.viewModel.form.allSections.value
                 allSections[indexPath.section].items[indexPath.row] = rowData
                 self.viewModel.form.allSections.accept(allSections)
-//                var v = self.viewModel.form.allSections
-//                v[indexPath.section].items[indexPath.item] = rowData
-//                self.viewModel.form.allSections.accept(v)
             })
             
         }).disposed(by: disposeBag)

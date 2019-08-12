@@ -22,6 +22,7 @@ struct SearchViewModel {
     
     var didSelectItem: ((IndexPath) -> Void)?
     var didTapBack: (() -> Void)?
+    var didUpdateRow: ((IndexPath, SearchRow) -> Void)?
     
     func detailViewModel(at indexPath: IndexPath) -> SearchDetailViewModel {
         return SearchDetailViewModel(row: form.allSections.value[indexPath.section].items[indexPath.row])
@@ -35,7 +36,7 @@ struct SearchViewModel {
         )
         
         priceSection = SearchSection.price(items: [
-            SearchRow.single(title: "Year", options: [("From", ["tttt"], "1234"), ("To", ["tttt"], "1234")]),
+            SearchRow.single(title: "Year", options: [("From", ["tttt", "132131", "test data"], "1234"), ("To", ["tttt"], "1234")]),
             SearchRow.single(title: "Price", options: [("From", ["tttt"], "1234"), ("To", ["tttt"], "1234")])
             ]
         )

@@ -73,9 +73,43 @@
                     <view key="view" contentMode="scaleToFill" id="vwU-9R-vCy">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="lvT-VN-SmS">
+                                <rect key="frame" x="0.0" y="0.0" width="414" height="862"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <prototypes>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="SearchDetailSingleCell" textLabel="dRl-yd-mV1" style="IBUITableViewCellStyleDefault" id="3xK-pM-qb5">
+                                        <rect key="frame" x="0.0" y="28" width="414" height="44"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="3xK-pM-qb5" id="bWd-yw-iQ5">
+                                            <rect key="frame" x="0.0" y="0.0" width="414" height="43.5"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" insetsLayoutMarginsFromSafeArea="NO" text="Title" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="dRl-yd-mV1">
+                                                    <rect key="frame" x="20" y="0.0" width="374" height="43.5"/>
+                                                    <autoresizingMask key="autoresizingMask"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                            </subviews>
+                                        </tableViewCellContentView>
+                                    </tableViewCell>
+                                </prototypes>
+                            </tableView>
+                        </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="wdK-ht-IOi" firstAttribute="bottom" secondItem="lvT-VN-SmS" secondAttribute="bottom" id="7Bs-Un-oUt"/>
+                            <constraint firstItem="lvT-VN-SmS" firstAttribute="top" secondItem="vwU-9R-vCy" secondAttribute="top" id="Wfc-cb-WmP"/>
+                            <constraint firstItem="wdK-ht-IOi" firstAttribute="trailing" secondItem="lvT-VN-SmS" secondAttribute="trailing" id="hNS-uL-5CD"/>
+                            <constraint firstItem="lvT-VN-SmS" firstAttribute="leading" secondItem="vwU-9R-vCy" secondAttribute="leading" id="sLk-o2-er1"/>
+                        </constraints>
                         <viewLayoutGuide key="safeArea" id="wdK-ht-IOi"/>
                     </view>
+                    <connections>
+                        <outlet property="tableView" destination="lvT-VN-SmS" id="gxz-4A-GCQ"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Uhp-cF-Ski" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
