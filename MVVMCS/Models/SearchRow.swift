@@ -9,11 +9,15 @@
 import UIKit
 import RxCocoa
 
-typealias Parameter = (title: String, options: [String], value: String?)
-
 enum SearchRowType {
     case single
     case fromTo
+}
+
+struct Parameter {
+    var title: String
+    var options: [String]
+    var value: String?
 }
 
 struct SearchRow {
