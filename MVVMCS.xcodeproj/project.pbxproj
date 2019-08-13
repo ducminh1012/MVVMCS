@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		4C11E29E2302B004007969DC /* VehicleSearchService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C11E29D2302B003007969DC /* VehicleSearchService.swift */; };
+		4C11E2A02302CDA9007969DC /* masterdata.json in Resources */ = {isa = PBXBuildFile; fileRef = 4C11E29F2302CDA9007969DC /* masterdata.json */; };
 		4C18480B22F03BF800D2D168 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C18480A22F03BF800D2D168 /* AppDelegate.swift */; };
 		4C18480D22F03BF800D2D168 /* SearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C18480C22F03BF800D2D168 /* SearchViewController.swift */; };
 		4C18481022F03BF800D2D168 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4C18480E22F03BF800D2D168 /* Main.storyboard */; };
@@ -30,6 +32,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		4C11E29D2302B003007969DC /* VehicleSearchService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VehicleSearchService.swift; sourceTree = "<group>"; };
+		4C11E29F2302CDA9007969DC /* masterdata.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = masterdata.json; sourceTree = "<group>"; };
 		4C18480722F03BF700D2D168 /* MVVMCS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MVVMCS.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		4C18480A22F03BF800D2D168 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		4C18480C22F03BF800D2D168 /* SearchViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchViewController.swift; sourceTree = "<group>"; };
@@ -78,6 +82,14 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
+		4C11E29C2302AFDB007969DC /* Services */ = {
+			isa = PBXGroup;
+			children = (
+				4C11E29D2302B003007969DC /* VehicleSearchService.swift */,
+			);
+			path = Services;
+			sourceTree = "<group>";
+		};
 		4C1847FE22F03BF700D2D168 = {
 			isa = PBXGroup;
 			children = (
@@ -107,6 +119,8 @@
 				4C1E350B22F41F4B009B914B /* Extensions */,
 				4C1E350C22F41F59009B914B /* Models */,
 				4C18481622F03BF900D2D168 /* Info.plist */,
+				4C11E29F2302CDA9007969DC /* masterdata.json */,
+				4C11E29C2302AFDB007969DC /* Services */,
 				4C1E350522F3DF69009B914B /* Supporting Files */,
 			);
 			path = MVVMCS;
@@ -252,6 +266,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				4C18481522F03BF900D2D168 /* LaunchScreen.storyboard in Resources */,
+				4C11E2A02302CDA9007969DC /* masterdata.json in Resources */,
 				4C18481222F03BF900D2D168 /* Assets.xcassets in Resources */,
 				4C18481022F03BF800D2D168 /* Main.storyboard in Resources */,
 			);
@@ -306,6 +321,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				4C11E29E2302B004007969DC /* VehicleSearchService.swift in Sources */,
 				4C1E351022F42577009B914B /* SearchFormType.swift in Sources */,
 				4C22B44C22F9697600A24509 /* UITableViewCell+identifier.swift in Sources */,
 				4C1E350322F3DE53009B914B /* SearchDetailViewController.swift in Sources */,
