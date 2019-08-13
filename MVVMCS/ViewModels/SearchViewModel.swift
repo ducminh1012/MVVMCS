@@ -30,14 +30,14 @@ struct SearchViewModel {
 
     init() {
         makeSection = SearchSection.makeModel(items: [
-            SearchRow.single(title: "Make", options: [("Make", ["tttt"], "1234")]),
-            SearchRow.single(title: "Model", options: [("Model", ["tttt"], "1234")])
+            SearchRow.single(params: [("Make", ["All", "Audi", "Benley", "BMW", "BMW-Alpina", "Cadillac"], "All")]),
+            SearchRow.single(params: [("Model", ["tttt"], "All")])
             ]
         )
         
         priceSection = SearchSection.price(items: [
-            SearchRow.single(title: "Year", options: [("From", ["tttt", "132131", "test data"], "1234"), ("To", ["tttt"], "1234")]),
-            SearchRow.single(title: "Price", options: [("From", ["tttt"], "1234"), ("To", ["tttt"], "1234")])
+            SearchRow.single(params: [("Year From", ["2019", "2018", "2017", "2016"], "2018"), ("To", ["tttt"], "1234")]),
+            SearchRow.single(params: [("Price From", ["CHF 1'000", "CHF 2'000", "CHF 3'000", "CHF 4'000", "CHF 5'000"], "CHF 3'000"), ("To", ["CHF 1'000", "CHF 2'000", "CHF 3'000", "CHF 4'000", "CHF 5'000"], "CHF 5'000" )])
             ]
         )
         

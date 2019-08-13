@@ -9,7 +9,7 @@
 import UIKit
 import RxCocoa
 
-typealias Parameter = (title: String, data: [String], value: String?)
+typealias Parameter = (title: String, options: [String], value: String?)
 
 enum SearchRowType {
     case single
@@ -19,24 +19,21 @@ enum SearchRowType {
 struct SearchRow {
     var index: Int!
     var type = SearchRowType.single
-    var title: String?
     var params = BehaviorRelay<[Parameter]>(value: [])
     
-    static func single(title: String, options: [Parameter]) -> SearchRow {
-        return SearchRow(type: .single, title: title, params: options)
+    static func single(params: [Parameter]) -> SearchRow {
+        return SearchRow(type: .single, params: params)
     }
     
     static func fromTo(from: Parameter, to: Parameter) -> SearchRow {
-        return SearchRow(type: .fromTo, title: nil, params: [from, to])
+        return SearchRow(type: .fromTo, params: [from, to])
     }
     
-    init(type: SearchRowType, title: String?, params: [Parameter]) {
+    init(type: SearchRowType, params: [Parameter]) {
         self.type = type
-        self.title = title
         self.params = BehaviorRelay(value: params)
     }
     
     init(){
-        
     }
 }
