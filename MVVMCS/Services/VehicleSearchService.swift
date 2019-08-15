@@ -7,14 +7,16 @@
 //
 
 import Foundation
+import SwiftyJSON
 
 class VehicleSearchService {
     static let shared = VehicleSearchService()
     
-    let allMakes = Parameter(title: "Make", options: ["All", "Audi", "Benley", "BMW", "BMW-Alpina", "Cadillac"], value: "All")
-    let allModels = Parameter(title: "Model", options: ["All", "A1", "A2", "A3", "A4", "A5"], value: "All")
+    let allMakes = Parameter(title: "Make", options: Array(masterData.keys).sorted(), value: "All")
     
-    func models(for selectedMake: Parameter) {
-        
+    func models(for selectedMake: String) -> Parameter? {
+        guard let models = masterData[selectedMake] else { return nil }
+        return Parameter(title: "Models", options: models, value: "All")
     }
+
 }

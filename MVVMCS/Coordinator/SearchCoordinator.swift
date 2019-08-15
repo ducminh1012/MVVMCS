@@ -17,7 +17,7 @@ class SearchCoordinator : BaseCoordinator {
         self.navigationController = navigationController
     }
 
-    override func start() {
+    override func start() { 
         let viewController = SearchViewController.instantiate()
         viewController.viewModel = viewModel
         viewController.coordinator = self
@@ -27,7 +27,7 @@ class SearchCoordinator : BaseCoordinator {
 
     func showDetail(index: IndexPath, in navigationController: UINavigationController, callback: @escaping (SearchRow) -> Void) {
         let detailViewModel = viewModel.detailViewModel(at: index)
-//        detailViewModel.rowData.sub
+
         detailViewModel.didUpdateTitle = callback
         
         let newCoordinator = SearchDetailCoordinator(navigationController: navigationController, viewModel: detailViewModel)

@@ -46,14 +46,34 @@ extension SearchViewController {
             .bind(to: tableView.rx.items(dataSource: dataSource))
             .disposed(by: disposeBag)
         
+        self.viewModel.form.selectedModel.asObservable().subscribe(onNext: { (value) in
+            self.tableView.reloadData()
+        }).disposed(by: disposeBag)
+        
+        self.viewModel.form.selectedMake.asObservable().subscribe(onNext: { (value) in
+            self.tableView.reloadData()
+        }).disposed(by: disposeBag)
         
         tableView.rx.itemSelected.subscribe({ (event) in
+            
             let indexPath = event.element!
             self.coordinator?.showDetail(index: indexPath, in: self.navigationController!, callback: { rowData in
-
                 var allSections = self.viewModel.form.allSections.value
                 allSections[indexPath.section].items[indexPath.row] = rowData
                 self.viewModel.form.allSections.accept(allSections)
+                
+                switch indexPath.section {
+                case 0:
+                    if indexPath.row == 0 {
+                        self.viewModel.form.selectedMake.accept(rowData.params.value[0].value!)
+                    } else {
+                        
+                        self.viewModel.form.selectedModel.accept(rowData.params.value[0].value!)
+                    }
+                default: break
+                }
+               
+                
             })
             
         }).disposed(by: disposeBag)

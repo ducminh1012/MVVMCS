@@ -9,6 +9,6 @@ target 'MVVMCS' do
   pod 'RxSwift'
   pod 'RxCocoa'
   pod 'RxAlamofire'
-  pod 'ObjectMapper'
+  pod 'SwiftyJSON'
   pod 'RxDataSources', '~> 4.0'
 end

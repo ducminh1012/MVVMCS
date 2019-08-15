@@ -26,6 +26,7 @@
 		4C22B44722F9691500A24509 /* SearchCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C22B44622F9691500A24509 /* SearchCoordinator.swift */; };
 		4C22B44922F9693D00A24509 /* SearchSingleTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C22B44822F9693D00A24509 /* SearchSingleTableViewCell.swift */; };
 		4C22B44C22F9697600A24509 /* UITableViewCell+identifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C22B44B22F9697600A24509 /* UITableViewCell+identifier.swift */; };
+		4C282D612303BCD100A9B9C2 /* MasterData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C282D602303BCD100A9B9C2 /* MasterData.swift */; };
 		4C92A1F022FBCC4A006ED119 /* SearchDetailViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C92A1EF22FBCC4A006ED119 /* SearchDetailViewModel.swift */; };
 		4C9D9E6C22F14E01007D6DED /* SearchViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C9D9E6B22F14E01007D6DED /* SearchViewModel.swift */; };
 		EE341B47DA8E04D752C8194B /* Pods_MVVMCS.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 81C7F90C32173CCF0E0A0244 /* Pods_MVVMCS.framework */; };
@@ -53,6 +54,7 @@
 		4C22B44622F9691500A24509 /* SearchCoordinator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchCoordinator.swift; sourceTree = "<group>"; };
 		4C22B44822F9693D00A24509 /* SearchSingleTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchSingleTableViewCell.swift; sourceTree = "<group>"; };
 		4C22B44B22F9697600A24509 /* UITableViewCell+identifier.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UITableViewCell+identifier.swift"; sourceTree = "<group>"; };
+		4C282D602303BCD100A9B9C2 /* MasterData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MasterData.swift; sourceTree = "<group>"; };
 		4C92A1EF22FBCC4A006ED119 /* SearchDetailViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchDetailViewModel.swift; sourceTree = "<group>"; };
 		4C9D9E6B22F14E01007D6DED /* SearchViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchViewModel.swift; sourceTree = "<group>"; };
 		81C7F90C32173CCF0E0A0244 /* Pods_MVVMCS.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_MVVMCS.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -122,6 +124,7 @@
 				4C11E29F2302CDA9007969DC /* masterdata.json */,
 				4C11E29C2302AFDB007969DC /* Services */,
 				4C1E350522F3DF69009B914B /* Supporting Files */,
+				4C282D602303BCD100A9B9C2 /* MasterData.swift */,
 			);
 			path = MVVMCS;
 			sourceTree = "<group>";
@@ -330,6 +333,7 @@
 				4C1E352722F42A86009B914B /* SearchSection.swift in Sources */,
 				4C1E34FF22F3DD52009B914B /* BaseCoordinator.swift in Sources */,
 				4C1E350722F3DFFD009B914B /* SearchResponse.swift in Sources */,
+				4C282D612303BCD100A9B9C2 /* MasterData.swift in Sources */,
 				4C22B44922F9693D00A24509 /* SearchSingleTableViewCell.swift in Sources */,
 				4C18480D22F03BF800D2D168 /* SearchViewController.swift in Sources */,
 				4C1E350922F3EBFC009B914B /* SearchDetailCoordinator.swift in Sources */,
