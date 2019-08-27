@@ -10,73 +10,50 @@ import UIKit
 import RxCocoa
 import RxSwift
 import RxDataSources
+import XCoordinator
 
-class SearchViewController: UIViewController, Storyboardable {
-    weak var coordinator: SearchCoordinator?
+class SearchViewController: UIViewController, Storyboardable, BindableType {
     
     @IBOutlet weak var tableView: UITableView!
     
     fileprivate let disposeBag = DisposeBag()
     var viewModel: SearchViewModel!
     
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        setup()
-        
-    }
-}
-
-//MARK: - Private
-extension SearchViewController {
-    
-    fileprivate func setup() {
+    func bindViewModel() {
         
         let dataSource = RxTableViewSectionedReloadDataSource<SearchSection>(configureCell: { dataSource, table, indexPath, item in
-            switch item.type {
-            case .single:
-                let cell = table.dequeueReusableCell(withIdentifier: SearchSingleTableViewCell.identifier) as! SearchSingleTableViewCell
-                cell.setupLayout(param: dataSource[indexPath.section].items[indexPath.item].params.value.first!)
+            switch indexPath.row {
+            case 0:
+                let cell = table.dequeueReusableCell(withIdentifier: SearchMakeTableViewCell.identifier) as! SearchMakeTableViewCell
+                cell.title.accept("Make")
+                cell.value.accept(self.viewModel.form.selectedMake.value)
+                return cell
+            case 1:
+                let cell = table.dequeueReusableCell(withIdentifier: SearchMakeTableViewCell.identifier) as! SearchMakeTableViewCell
+                cell.title.accept("Model")
+                cell.value.accept(self.viewModel.form.selectedModel.value)
                 return cell
             default: return UITableViewCell()
                 
             }
+        
         })
         
-        self.viewModel.form.allSections
+        tableView.rx.itemSelected.subscribe(onNext: { (indexPath) in
+            switch indexPath.row {
+            case 0:
+                let row = self.viewModel.makeSection.items[indexPath.row]
+                self.viewModel.router.trigger(.searchSingleSelection(row))
+            case 1:
+                let row = self.viewModel.makeSection.items[indexPath.row]
+                self.viewModel.router.trigger(.searchSingleSelection(row))
+            default: break
+            }
+        }).disposed(by: disposeBag)
+        
+        viewModel.allSections
             .bind(to: tableView.rx.items(dataSource: dataSource))
             .disposed(by: disposeBag)
         
-        self.viewModel.form.selectedModel.asObservable().subscribe(onNext: { (value) in
-            self.tableView.reloadData()
-        }).disposed(by: disposeBag)
-        
-        self.viewModel.form.selectedMake.asObservable().subscribe(onNext: { (value) in
-            self.tableView.reloadData()
-        }).disposed(by: disposeBag)
-        
-        tableView.rx.itemSelected.subscribe({ (event) in
-            
-            let indexPath = event.element!
-            self.coordinator?.showDetail(index: indexPath, in: self.navigationController!, callback: { rowData in
-                var allSections = self.viewModel.form.allSections.value
-                allSections[indexPath.section].items[indexPath.row] = rowData
-                self.viewModel.form.allSections.accept(allSections)
-                
-                switch indexPath.section {
-                case 0:
-                    if indexPath.row == 0 {
-                        self.viewModel.form.selectedMake.accept(rowData.params.value[0].value!)
-                    } else {
-                        
-                        self.viewModel.form.selectedModel.accept(rowData.params.value[0].value!)
-                    }
-                default: break
-                }
-               
-                
-            })
-            
-        }).disposed(by: disposeBag)
-
     }
 }

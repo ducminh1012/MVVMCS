@@ -6,13 +6,16 @@
 //  Copyright © 2019 Duc Le. All rights reserved.
 //
 import RxCocoa
+import XCoordinator
 
 class SearchDetailViewModel {
-    var rowData = SearchRow()
+    let router: AnyRouter<SearchRoute>
+    let rowData = BehaviorRelay(value: SearchRow())
     
-    var didUpdateTitle: ((SearchRow) -> Void)?
+    var didSelectMake: ((String) -> Void)?
     
-    init(row: SearchRow) {
-        rowData = row
+    init(router: AnyRouter<SearchRoute>, rowData: SearchRow) {
+        self.router = router
+        self.rowData.accept(rowData)
     }
 }

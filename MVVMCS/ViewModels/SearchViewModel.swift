@@ -9,31 +9,44 @@
 import RxSwift
 import RxCocoa
 import RxDataSources
+import XCoordinator
 
 class SearchViewModel {
-    var form: SearchForm
-    var makeSection: SearchSection!
-    var priceSection: SearchSection!
-    var disposeBag = DisposeBag()
+    let router: AnyRouter<SearchRoute>
     
-    func performSearch(for query: String) -> Observable<[SearchResponse]> {
-        let response = SearchResponse(title: "test", description: "desc")
-        return Observable.just([response])
-    }
+    var form = Form()
     
-    var didSelectItem: ((IndexPath) -> Void)?
-    var didTapBack: (() -> Void)?
-    var didUpdateRow: ((IndexPath, SearchRow) -> Void)?
+    var allSections = BehaviorRelay<[SearchSection]>(value: [])
+    var makeSection = SearchSection(type: .makeModel, items: [])
     
-    func detailViewModel(at indexPath: IndexPath) -> SearchDetailViewModel {
-        return SearchDetailViewModel(row: form.allSections.value[indexPath.section].items[indexPath.row])
-    }
+    var didSelectMake: ((String) -> Void)?
 
-    init() {
-        form = SearchForm()
+    init(router: AnyRouter<SearchRoute>) {
+        self.router = router
         
-        form.selectedMake.subscribe(onNext: { (make) in
-            self.form.reloadData()
-        }).disposed(by: disposeBag)
+        let makes = VehicleSearchService.shared.allMakes
+        
+        makeSection = SearchSection.makeModel(items: [
+            SearchRow.single(params: [makes])
+            ])
+
+        self.allSections.accept([makeSection])
+        
+        didSelectMake = { (make) in
+            let models = VehicleSearchService.shared.models(for: make)!
+            
+            self.makeSection = SearchSection.makeModel(items: [
+                SearchRow.single(params: [makes]),
+                SearchRow.single(params: [models])
+                ])
+            
+            if make == "All" {
+                self.makeSection = SearchSection.makeModel(items: [
+                    SearchRow.single(params: [makes])
+                    ])
+            }
+            self.allSections.accept([self.makeSection])
+            self.form.selectedMake.accept(make)
+        }
     }
 }

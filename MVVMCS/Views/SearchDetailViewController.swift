@@ -10,8 +10,9 @@ import UIKit
 import RxSwift
 import RxCocoa
 
-class SearchDetailViewController: UIViewController, Storyboardable {
-    weak var coordinator: SearchDetailCoordinator?
+class SearchDetailViewController: UIViewController, Storyboardable, BindableType {
+    
+    
     var viewModel: SearchDetailViewModel!
     var disposeBag = DisposeBag()
     
@@ -19,22 +20,28 @@ class SearchDetailViewController: UIViewController, Storyboardable {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        let data = Observable.just(viewModel.rowData.params.value[0].options)
-        
+    }
+    
+    func bindViewModel() {
+        let data = viewModel.rowData.value.params[0].options
+
         data.bind(to: tableView.rx.items(cellIdentifier: "SearchDetailSingleCell")) { (index, data, cell) in
-            let a = self.viewModel.rowData.params.value[0].value
+            let a = self.viewModel.rowData.value.params[0].value
             cell.backgroundColor = (a == data) ? .green : .white
             cell.textLabel?.text = data
-        }.disposed(by: disposeBag)
-        
-        tableView.rx.itemSelected.subscribe(onNext: { (indexPath) in
-            let selected = self.viewModel.rowData.params.value[0].options[indexPath.row]
-            var old = self.viewModel.rowData.params.value
-            old[0].value = selected
-            self.viewModel.rowData.params.accept(old)
-            self.viewModel.didUpdateTitle?(self.viewModel.rowData)
-            self.coordinator?.goBackHome()
-        }).disposed(by: disposeBag)
+            }.disposed(by: disposeBag)
 
+        tableView.rx.itemSelected.subscribe(onNext: { (indexPath) in
+            let selected = self.viewModel.rowData.value.params[0].options.value[indexPath.row]
+            var old = self.viewModel.rowData.value.params
+            old[0].value = selected
+
+            var a = self.viewModel.rowData.value
+            a.params = old
+            self.viewModel.rowData.accept(a)
+            
+            self.viewModel.didSelectMake?(selected)
+            self.viewModel.router.trigger(.back)
+        }).disposed(by: disposeBag)
     }
 }

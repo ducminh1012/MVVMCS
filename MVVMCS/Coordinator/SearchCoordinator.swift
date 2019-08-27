@@ -7,32 +7,44 @@
 //
 
 import UIKit
+import XCoordinator
 
-class SearchCoordinator : BaseCoordinator {
+enum SearchRoute: Route {
+    case search
+    case searchSingleSelection(SearchRow)
+    case searchResult
+    case back
+}
 
-    var navigationController: UINavigationController?
-    let viewModel = SearchViewModel()
+class SearchCoordinator: NavigationCoordinator<SearchRoute> {
+    var searchViewModel: SearchViewModel!
+    var searchDetailViewModel: SearchDetailViewModel!
     
-    init(navigationController :UINavigationController?) {
-        self.navigationController = navigationController
+    init() {
+        super.init(initialRoute: .search)
     }
-
-    override func start() { 
-        let viewController = SearchViewController.instantiate()
-        viewController.viewModel = viewModel
-        viewController.coordinator = self
-
-        navigationController?.pushViewController(viewController, animated: true)
-    }
-
-    func showDetail(index: IndexPath, in navigationController: UINavigationController, callback: @escaping (SearchRow) -> Void) {
-        let detailViewModel = viewModel.detailViewModel(at: index)
-
-        detailViewModel.didUpdateTitle = callback
-        
-        let newCoordinator = SearchDetailCoordinator(navigationController: navigationController, viewModel: detailViewModel)
-        self.store(coordinator: newCoordinator)
-        newCoordinator.start()
-        
+    
+    override func prepareTransition(for route: SearchRoute) -> NavigationTransition {
+        switch route {
+        case .search:
+            let viewController = SearchViewController.instantiate()
+            searchViewModel = SearchViewModel(router: anyRouter)
+            viewController.bind(to: searchViewModel)
+            return .push(viewController)
+        case .searchSingleSelection(let rowData):
+            let controller = SearchDetailViewController.instantiate()
+            searchDetailViewModel = SearchDetailViewModel(router: anyRouter, rowData: rowData)
+            searchDetailViewModel.didSelectMake = { (make) in
+                self.searchViewModel.didSelectMake?(make)
+            }
+            controller.bind(to: searchDetailViewModel)
+            return .push(controller)
+        case .searchResult:
+            return .none()
+        case .back:
+            return .pop()
+        }
     }
 }
+
+

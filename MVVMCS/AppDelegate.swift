@@ -7,19 +7,18 @@
 //
 
 import UIKit
+import XCoordinator
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
-
+    let router = AppCoordinator().anyRouter
+    
     var window: UIWindow?
     private var appCoordinator : AppCoordinator!
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         window = UIWindow()
-        
-        let appCoordinator = AppCoordinator(window: window!)
-        appCoordinator.start()
-        self.appCoordinator = appCoordinator
+        router.setRoot(for: window!)
         return true
     }
 }
