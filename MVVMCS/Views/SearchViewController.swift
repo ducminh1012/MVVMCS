@@ -42,11 +42,13 @@ class SearchViewController: UIViewController, Storyboardable, BindableType {
         tableView.rx.itemSelected.subscribe(onNext: { (indexPath) in
             switch indexPath.row {
             case 0:
-                let row = self.viewModel.makeSection.items[indexPath.row]
-                self.viewModel.router.trigger(.searchSingleSelection(row))
+                let options = self.viewModel.makeSection.items[indexPath.row].params.first?.options.value ?? []
+                let selected = self.viewModel.form.selectedMake.value
+                self.viewModel.router.trigger(.searchSingleSelection(options, selected, .make))
             case 1:
-                let row = self.viewModel.makeSection.items[indexPath.row]
-                self.viewModel.router.trigger(.searchSingleSelection(row))
+                let options = self.viewModel.makeSection.items[indexPath.row].params.first?.options.value ?? []
+                let selected = self.viewModel.form.selectedModel.value
+                self.viewModel.router.trigger(.searchSingleSelection(options, selected, .model))
             default: break
             }
         }).disposed(by: disposeBag)

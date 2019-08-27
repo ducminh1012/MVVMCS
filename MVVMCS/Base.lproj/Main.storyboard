@@ -67,10 +67,10 @@
             </objects>
             <point key="canvasLocation" x="1068.1159420289855" y="128.57142857142856"/>
         </scene>
-        <!--Search Detail View Controller-->
+        <!--Search Single Selection View Controller-->
         <scene sceneID="Sbz-5X-cs2">
             <objects>
-                <viewController storyboardIdentifier="SearchDetailViewController" id="2kb-LQ-EF1" customClass="SearchDetailViewController" customModule="MVVMCS" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="SearchSingleSelectionViewController" id="2kb-LQ-EF1" customClass="SearchSingleSelectionViewController" customModule="MVVMCS" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="vwU-9R-vCy">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>

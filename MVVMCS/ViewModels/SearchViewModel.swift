@@ -20,7 +20,8 @@ class SearchViewModel {
     var makeSection = SearchSection(type: .makeModel, items: [])
     
     var didSelectMake: ((String) -> Void)?
-
+    var didSelectModel: ((String) -> Void)?
+    
     init(router: AnyRouter<SearchRoute>) {
         self.router = router
         
@@ -45,8 +46,15 @@ class SearchViewModel {
                     SearchRow.single(params: [makes])
                     ])
             }
-            self.allSections.accept([self.makeSection])
+            
             self.form.selectedMake.accept(make)
+            self.form.selectedModel.accept("All")
+            self.allSections.accept([self.makeSection])
+        }
+        
+        didSelectModel = { model in
+            self.form.selectedModel.accept(model)
+            self.allSections.accept([self.makeSection])
         }
     }
 }

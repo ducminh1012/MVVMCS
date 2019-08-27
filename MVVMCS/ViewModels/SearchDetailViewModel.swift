@@ -1,5 +1,5 @@
 //
-//  SearchDetailViewModel.swift
+//  SearchSingleSelectionViewModel.swift
 //  MVVMCS
 //
 //  Created by Duc Le on 8/8/19.
@@ -8,14 +8,24 @@
 import RxCocoa
 import XCoordinator
 
-class SearchDetailViewModel {
+enum SearchFormRowType {
+    case make
+    case model
+}
+
+class SearchSingleSelectionViewModel {
     let router: AnyRouter<SearchRoute>
-    let rowData = BehaviorRelay(value: SearchRow())
+    let options: BehaviorRelay<[String]>
+    let selectedValue: BehaviorRelay<String>
+    let type: SearchFormRowType
     
     var didSelectMake: ((String) -> Void)?
+    var didSelectModel: ((String) -> Void)?
     
-    init(router: AnyRouter<SearchRoute>, rowData: SearchRow) {
+    init(router: AnyRouter<SearchRoute>, options: [String], selected: String, type: SearchFormRowType) {
         self.router = router
-        self.rowData.accept(rowData)
+        self.options = BehaviorRelay(value: options)
+        self.selectedValue = BehaviorRelay(value: selected)
+        self.type = type
     }
 }

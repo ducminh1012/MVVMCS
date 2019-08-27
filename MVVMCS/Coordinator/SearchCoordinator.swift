@@ -11,14 +11,14 @@ import XCoordinator
 
 enum SearchRoute: Route {
     case search
-    case searchSingleSelection(SearchRow)
+    case searchSingleSelection([String], String, SearchFormRowType)
     case searchResult
     case back
 }
 
 class SearchCoordinator: NavigationCoordinator<SearchRoute> {
     var searchViewModel: SearchViewModel!
-    var searchDetailViewModel: SearchDetailViewModel!
+    var searchSingleSelectionViewModel: SearchSingleSelectionViewModel!
     
     init() {
         super.init(initialRoute: .search)
@@ -31,13 +31,17 @@ class SearchCoordinator: NavigationCoordinator<SearchRoute> {
             searchViewModel = SearchViewModel(router: anyRouter)
             viewController.bind(to: searchViewModel)
             return .push(viewController)
-        case .searchSingleSelection(let rowData):
-            let controller = SearchDetailViewController.instantiate()
-            searchDetailViewModel = SearchDetailViewModel(router: anyRouter, rowData: rowData)
-            searchDetailViewModel.didSelectMake = { (make) in
+        case .searchSingleSelection(let options, let selected, let type):
+            let controller = SearchSingleSelectionViewController.instantiate()
+            searchSingleSelectionViewModel = SearchSingleSelectionViewModel(router: anyRouter, options: options, selected: selected, type: type)
+            searchSingleSelectionViewModel.didSelectMake = { (make) in
                 self.searchViewModel.didSelectMake?(make)
             }
-            controller.bind(to: searchDetailViewModel)
+            
+            searchSingleSelectionViewModel.didSelectModel = { model in
+                self.searchViewModel.didSelectModel?(model)
+            }
+            controller.bind(to: searchSingleSelectionViewModel)
             return .push(controller)
         case .searchResult:
             return .none()
