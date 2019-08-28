@@ -22,25 +22,43 @@ class SearchViewController: UIViewController, Storyboardable, BindableType {
     func bindViewModel() {
         
         let dataSource = RxTableViewSectionedReloadDataSource<SearchSection>(configureCell: { dataSource, table, indexPath, item in
-            switch indexPath.row {
+            switch indexPath.section {
             case 0:
-                let cell = table.dequeueReusableCell(withIdentifier: SearchSingleSelectionCell.identifier) as! SearchSingleSelectionCell
-                cell.title.accept("Make")
-                cell.value.accept(self.viewModel.searchForm.selectedMake.value)
-                return cell
+                switch indexPath.row {
+                case 0:
+                    let cell = table.dequeueReusableCell(withIdentifier: SearchSingleSelectionCell.identifier) as! SearchSingleSelectionCell
+                    cell.title.accept("Make")
+                    cell.value.accept(self.viewModel.searchForm.selectedMake.value)
+                    return cell
+                case 1:
+                    let cell = table.dequeueReusableCell(withIdentifier: SearchSingleSelectionCell.identifier) as! SearchSingleSelectionCell
+                    cell.title.accept("Model")
+                    cell.value.accept(self.viewModel.searchForm.selectedModel.value)
+                    return cell
+                default:
+                    return UITableViewCell()
+                }
             case 1:
-                let cell = table.dequeueReusableCell(withIdentifier: SearchSingleSelectionCell.identifier) as! SearchSingleSelectionCell
-                cell.title.accept("Model")
-                cell.value.accept(self.viewModel.searchForm.selectedModel.value)
+                let cell = table.dequeueReusableCell(withIdentifier: SearchFromToSelectionCell.identifier) as! SearchFromToSelectionCell
+                cell.fromValue.accept(self.viewModel.searchForm.selectedFromPrice.value)
+                cell.toValue.accept(self.viewModel.searchForm.selectedToPrice.value)
+                cell.didSelectFromButton = {
+                    self.viewModel.handleSelectForm?(.fromPrice)
+                }
+                
+                cell.didSelectToButton = {
+                    self.viewModel.handleSelectForm?(.toPrice)
+                }
                 return cell
             default:
-                return UITableViewCell()                
+                return UITableViewCell()
             }
         
         })
         
         tableView.rx.itemSelected.subscribe(onNext: { (indexPath) in
-            self.viewModel.handleSelectAtIndex?(indexPath)
+            guard indexPath.section == 0 else { return }
+            self.viewModel.handleSelectForm?(indexPath.row == 0 ? .make : .model)
         }).disposed(by: disposeBag)
         
         viewModel.allSections

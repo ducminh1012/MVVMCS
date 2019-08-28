@@ -11,6 +11,8 @@ import RxSwift
 
 class SearchSingleSelectionCell: UITableViewCell {
     
+    @IBOutlet weak var titleLabel: UILabel!
+    @IBOutlet weak var valueButton: UIButton!
     var title = BehaviorRelay(value: "")
     var value = BehaviorRelay(value: "All")
     var options = BehaviorRelay(value: [String]())
@@ -19,7 +21,7 @@ class SearchSingleSelectionCell: UITableViewCell {
     override func awakeFromNib() {
         super.awakeFromNib()
         
-        title.bind(to: textLabel!.rx.text).disposed(by: disposeBag)
-        value.bind(to: detailTextLabel!.rx.text).disposed(by: disposeBag)        
+        title.bind(to: titleLabel.rx.text).disposed(by: disposeBag)
+        value.bind(to: valueButton!.rx.title()).disposed(by: disposeBag)
     }
 }

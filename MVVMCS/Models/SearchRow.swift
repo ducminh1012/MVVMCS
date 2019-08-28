@@ -16,12 +16,12 @@ enum SearchRowType {
 
 struct Parameter {
     var title: String
-    var options = BehaviorRelay(value: [String]())
+    var options = [String]()
     var value: String?
     
     init(title: String, options: [String], value: String? = nil) {
         self.title = title
-        self.options = BehaviorRelay(value: options)
+        self.options = options
         self.value = value
     }
 }
@@ -31,8 +31,8 @@ struct SearchRow {
     var type = SearchRowType.single
     var params = [Parameter]()
     
-    static func single(params: [Parameter]) -> SearchRow {
-        return SearchRow(type: .single, params: params)
+    static func single(params: Parameter) -> SearchRow {
+        return SearchRow(type: .single, params: [params])
     }
     
     static func fromTo(from: Parameter, to: Parameter) -> SearchRow {
@@ -44,5 +44,5 @@ struct SearchRow {
         self.params = params
     }
     
-    init(){ }
+    init(){}
 }

@@ -15,6 +15,9 @@ class SearchForm {
     let selectedMake = BehaviorRelay<String>(value: "All")
     let selectedModel = BehaviorRelay<String>(value: "All")
     
+    let selectedFromPrice = BehaviorRelay<String>(value: "All")
+    let selectedToPrice = BehaviorRelay<String>(value: "All")
+    
     let allSections = BehaviorRelay<[SearchSection]>(value: [])
     
     init() {}

@@ -11,6 +11,8 @@ import XCoordinator
 enum SearchFormRowType {
     case make
     case model
+    case fromPrice
+    case toPrice
 }
 
 class SearchSingleSelectionViewModel {
@@ -21,6 +23,8 @@ class SearchSingleSelectionViewModel {
     
     var didSelectMake: ((String) -> Void)?
     var didSelectModel: ((String) -> Void)?
+    var didSelectFromPrice: ((String) -> Void)?
+    var didSelectToPrice: ((String) -> Void)?
     
     init(router: AnyRouter<SearchRoute>, options: [String], selected: String, type: SearchFormRowType) {
         self.router = router

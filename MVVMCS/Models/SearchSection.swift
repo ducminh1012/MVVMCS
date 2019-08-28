@@ -15,7 +15,6 @@ enum SearchSectionType {
 }
 
 struct SearchSection {
-    var index: Int!
     var type = SearchSectionType.makeModel
     var title: String?
     var items = [SearchRow]()

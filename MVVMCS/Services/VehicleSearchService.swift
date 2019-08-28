@@ -12,10 +12,12 @@ import SwiftyJSON
 class VehicleSearchService {
     static let shared = VehicleSearchService()
     
-    let allMakes = Parameter(title: "Make", options: Array(masterData.keys).sorted(), value: "All")
+    let allMakes = Parameter(title: "Make", options: Array(masterData["vehicles"]!.keys).sorted(), value: "All")
+    let fromPrices = Parameter(title: "From", options: Array(masterData["prices"]?["from"] ?? []), value: "All")
+    let toPrices = Parameter(title: "To", options: Array(masterData["prices"]?["to"] ?? []), value: "All")
     
     func models(for selectedMake: String) -> Parameter? {
-        guard let models = masterData[selectedMake] else { return nil }
+        guard let models = masterData["vehicles"]?[selectedMake] else { return nil }
         return Parameter(title: "Models", options: models, value: "All")
     }
 

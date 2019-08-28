@@ -18,8 +18,9 @@ class SearchViewModel {
     
     var allSections = BehaviorRelay<[SearchSection]>(value: [])
     var makeSection = SearchSection(type: .makeModel, items: [])
+    var priceSection = SearchSection(type: .price, title: "Price section", items: [])
     
-    var handleSelectAtIndex: ((IndexPath) -> Void)?
+    var handleSelectForm: ((SearchFormRowType) -> Void)?
     var didSelectMake: ((String) -> Void)?
     var didSelectModel: ((String) -> Void)?
     
@@ -27,49 +28,63 @@ class SearchViewModel {
         self.router = router
         
         let makes = VehicleSearchService.shared.allMakes
+        let prices = VehicleSearchService.shared.fromPrices
         
         makeSection = SearchSection.makeModel(items: [
-            SearchRow.single(params: [makes])
+            SearchRow.single(params: makes)
+        ])
+        
+        priceSection = SearchSection.price(items: [
+            SearchRow.fromTo(from: prices, to: prices)
         ])
 
-        self.allSections.accept([makeSection])
+        self.allSections.accept([makeSection, priceSection])
         
         didSelectMake = { (make) in
             let models = VehicleSearchService.shared.models(for: make)!
             
             self.makeSection = SearchSection.makeModel(items: [
-                SearchRow.single(params: [makes]),
-                SearchRow.single(params: [models])
+                SearchRow.single(params: makes),
+                SearchRow.single(params: models)
             ])
             
             if make == "All" {
                 self.makeSection = SearchSection.makeModel(items: [
-                    SearchRow.single(params: [makes])
+                    SearchRow.single(params: makes)
                 ])
             }
             
             self.searchForm.selectedMake.accept(make)
             self.searchForm.selectedModel.accept("All")
-            self.allSections.accept([self.makeSection])
+            self.allSections.accept([self.makeSection, self.priceSection])
         }
         
         didSelectModel = { model in
             self.searchForm.selectedModel.accept(model)
-            self.allSections.accept([self.makeSection])
+            self.allSections.accept([self.makeSection, self.priceSection])
         }
         
-        handleSelectAtIndex = { indexPath in            
-            switch indexPath.row {
-            case 0:
-                let options = self.makeSection.items[indexPath.row].params.first?.options.value ?? []
+        handleSelectForm = { formType in
+            switch formType {
+            case .make:
+                let options = self.makeSection.items[0].params.first?.options ?? []
                 let selected = self.searchForm.selectedMake.value
                 self.router.trigger(.searchSingleSelection(options, selected, .make))
-            case 1:
-                let options = self.makeSection.items[indexPath.row].params.first?.options.value ?? []
+            case .model:
+                let options = self.makeSection.items[1].params.first?.options ?? []
                 let selected = self.searchForm.selectedModel.value
                 self.router.trigger(.searchSingleSelection(options, selected, .model))
-            default: break
+                
+            case .fromPrice:
+                let selected = self.searchForm.selectedFromPrice.value
+                let fromPrices = self.priceSection.items[0].params.first?.options ?? []
+                self.router.trigger(.searchSingleSelection(fromPrices, selected, .fromPrice))
+            case .toPrice:
+                let selected = self.searchForm.selectedFromPrice.value
+                let toPrices = self.priceSection.items[0].params[1].options
+                self.router.trigger(.searchSingleSelection(toPrices, selected, .toPrice))
             }
+            
         }
     }
 }
