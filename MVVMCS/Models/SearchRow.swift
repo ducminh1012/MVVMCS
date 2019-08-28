@@ -44,6 +44,5 @@ struct SearchRow {
         self.params = params
     }
     
-    init(){
-    }
+    init(){ }
 }

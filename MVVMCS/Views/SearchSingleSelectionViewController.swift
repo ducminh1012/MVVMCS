@@ -19,11 +19,11 @@ class SearchSingleSelectionViewController: UIViewController, Storyboardable, Bin
     
     func bindViewModel() {
 
-        viewModel.options.bind(to: tableView.rx.items(cellIdentifier: "SearchDetailSingleCell")) { (index, data, cell) in
+        viewModel.options.bind(to: tableView.rx.items(cellIdentifier: SearchSingleSelectionCell.identifier)) { (index, data, cell) in
             let selected = self.viewModel.selectedValue.value
             cell.backgroundColor = (selected == data) ? .green : .white
             cell.textLabel?.text = data
-            }.disposed(by: disposeBag)
+        }.disposed(by: disposeBag)
 
         tableView.rx.itemSelected.subscribe(onNext: { (indexPath) in
             let selected = self.viewModel.options.value[indexPath.row]
@@ -34,8 +34,6 @@ class SearchSingleSelectionViewController: UIViewController, Storyboardable, Bin
             case .model:
                 self.viewModel.didSelectModel?(selected)
             }
-            
-            self.viewModel.router.trigger(.back)
         }).disposed(by: disposeBag)
     }
 }

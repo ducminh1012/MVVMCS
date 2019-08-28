@@ -11,8 +11,6 @@ import XCoordinator
 
 enum AppRoute: Route {
     case search
-    case searchSelection(SearchRow)
-    case searchResult
 }
 
 class AppCoordinator: NavigationCoordinator<AppRoute> {
@@ -26,7 +24,6 @@ class AppCoordinator: NavigationCoordinator<AppRoute> {
         case .search:
             let router = SearchCoordinator()
             return .present(router)
-        default: return .none()
         }
     }
 }

@@ -34,12 +34,17 @@ class SearchCoordinator: NavigationCoordinator<SearchRoute> {
         case .searchSingleSelection(let options, let selected, let type):
             let controller = SearchSingleSelectionViewController.instantiate()
             searchSingleSelectionViewModel = SearchSingleSelectionViewModel(router: anyRouter, options: options, selected: selected, type: type)
+            
+            // handle make selection
             searchSingleSelectionViewModel.didSelectMake = { (make) in
                 self.searchViewModel.didSelectMake?(make)
+                self.searchSingleSelectionViewModel.router.trigger(.back)
             }
             
+            // handle model selection
             searchSingleSelectionViewModel.didSelectModel = { model in
                 self.searchViewModel.didSelectModel?(model)
+                self.searchSingleSelectionViewModel.router.trigger(.back)
             }
             controller.bind(to: searchSingleSelectionViewModel)
             return .push(controller)

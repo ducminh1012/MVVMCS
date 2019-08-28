@@ -9,7 +9,7 @@
 import RxCocoa
 import RxSwift
 
-class SearchMakeTableViewCell: UITableViewCell {
+class SearchSingleSelectionCell: UITableViewCell {
     
     var title = BehaviorRelay(value: "")
     var value = BehaviorRelay(value: "All")

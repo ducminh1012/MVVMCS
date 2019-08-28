@@ -14,11 +14,12 @@ import XCoordinator
 class SearchViewModel {
     let router: AnyRouter<SearchRoute>
     
-    var form = Form()
+    var searchForm = SearchForm()
     
     var allSections = BehaviorRelay<[SearchSection]>(value: [])
     var makeSection = SearchSection(type: .makeModel, items: [])
     
+    var handleSelectAtIndex: ((IndexPath) -> Void)?
     var didSelectMake: ((String) -> Void)?
     var didSelectModel: ((String) -> Void)?
     
@@ -29,7 +30,7 @@ class SearchViewModel {
         
         makeSection = SearchSection.makeModel(items: [
             SearchRow.single(params: [makes])
-            ])
+        ])
 
         self.allSections.accept([makeSection])
         
@@ -39,22 +40,36 @@ class SearchViewModel {
             self.makeSection = SearchSection.makeModel(items: [
                 SearchRow.single(params: [makes]),
                 SearchRow.single(params: [models])
-                ])
+            ])
             
             if make == "All" {
                 self.makeSection = SearchSection.makeModel(items: [
                     SearchRow.single(params: [makes])
-                    ])
+                ])
             }
             
-            self.form.selectedMake.accept(make)
-            self.form.selectedModel.accept("All")
+            self.searchForm.selectedMake.accept(make)
+            self.searchForm.selectedModel.accept("All")
             self.allSections.accept([self.makeSection])
         }
         
         didSelectModel = { model in
-            self.form.selectedModel.accept(model)
+            self.searchForm.selectedModel.accept(model)
             self.allSections.accept([self.makeSection])
+        }
+        
+        handleSelectAtIndex = { indexPath in            
+            switch indexPath.row {
+            case 0:
+                let options = self.makeSection.items[indexPath.row].params.first?.options.value ?? []
+                let selected = self.searchForm.selectedMake.value
+                self.router.trigger(.searchSingleSelection(options, selected, .make))
+            case 1:
+                let options = self.makeSection.items[indexPath.row].params.first?.options.value ?? []
+                let selected = self.searchForm.selectedModel.value
+                self.router.trigger(.searchSingleSelection(options, selected, .model))
+            default: break
+            }
         }
     }
 }
