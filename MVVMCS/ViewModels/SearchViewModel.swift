@@ -23,6 +23,8 @@ class SearchViewModel {
     var handleSelectForm: ((SearchFormRowType) -> Void)?
     var didSelectMake: ((String) -> Void)?
     var didSelectModel: ((String) -> Void)?
+    var didSelectFromPrice: ((String) -> Void)?
+    var didSelectToPrice: ((String) -> Void)?
     
     init(router: AnyRouter<SearchRoute>) {
         self.router = router
@@ -64,6 +66,16 @@ class SearchViewModel {
             self.allSections.accept([self.makeSection, self.priceSection])
         }
         
+        didSelectToPrice = { toPrice in
+            self.searchForm.selectedToPrice.accept(toPrice)
+            self.allSections.accept([self.makeSection, self.priceSection])
+        }
+        
+        didSelectFromPrice = { fromPrice in
+            self.searchForm.selectedFromPrice.accept(fromPrice)
+            self.allSections.accept([self.makeSection, self.priceSection])
+        }
+        
         handleSelectForm = { formType in
             switch formType {
             case .make:
@@ -80,7 +92,7 @@ class SearchViewModel {
                 let fromPrices = self.priceSection.items[0].params.first?.options ?? []
                 self.router.trigger(.searchSingleSelection(fromPrices, selected, .fromPrice))
             case .toPrice:
-                let selected = self.searchForm.selectedFromPrice.value
+                let selected = self.searchForm.selectedToPrice.value
                 let toPrices = self.priceSection.items[0].params[1].options
                 self.router.trigger(.searchSingleSelection(toPrices, selected, .toPrice))
             }

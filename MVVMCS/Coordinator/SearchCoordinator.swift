@@ -46,6 +46,16 @@ class SearchCoordinator: NavigationCoordinator<SearchRoute> {
                 self.searchViewModel.didSelectModel?(model)
                 self.searchSingleSelectionViewModel.router.trigger(.back)
             }
+            
+            searchSingleSelectionViewModel.didSelectFromPrice = { fromPrice in
+                self.searchViewModel.didSelectFromPrice?(fromPrice)
+                self.searchSingleSelectionViewModel.router.trigger(.back)
+            }
+            
+            searchSingleSelectionViewModel.didSelectToPrice = { toPrice in
+                self.searchViewModel.didSelectToPrice?(toPrice)
+                self.searchSingleSelectionViewModel.router.trigger(.back)
+            }
             controller.bind(to: searchSingleSelectionViewModel)
             return .push(controller)
         case .searchResult:
