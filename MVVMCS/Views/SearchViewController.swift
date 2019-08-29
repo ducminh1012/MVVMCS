@@ -58,6 +58,7 @@ class SearchViewController: UIViewController, Storyboardable, BindableType {
         // Search button
         searchButton.rx.tap.bind {
             print(self.viewModel.searchForm.toDictionary())
+            self.viewModel.didPerformSearch?(self.viewModel.searchForm)
         }.disposed(by: disposeBag)
     }
 }

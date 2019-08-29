@@ -26,6 +26,8 @@
 		4C282D612303BCD100A9B9C2 /* MasterData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C282D602303BCD100A9B9C2 /* MasterData.swift */; };
 		4C419D9723178A88008BC9DB /* AppTheme.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C419D9623178A88008BC9DB /* AppTheme.swift */; };
 		4C419D9923178F4C008BC9DB /* SearchResultViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C419D9823178F4C008BC9DB /* SearchResultViewController.swift */; };
+		4C419D9B23179204008BC9DB /* SearchResultViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C419D9A23179204008BC9DB /* SearchResultViewModel.swift */; };
+		4C419D9D2317927A008BC9DB /* Vehicle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C419D9C2317927A008BC9DB /* Vehicle.swift */; };
 		4C4FB8EE23165B4F00D8EFA9 /* SearchFromToSelectionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C4FB8ED23165B4F00D8EFA9 /* SearchFromToSelectionCell.swift */; };
 		4C5FF2BA231682B100ED69EF /* SearchSingleSelectionCellViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C5FF2B9231682B100ED69EF /* SearchSingleSelectionCellViewModel.swift */; };
 		4C5FF2BC23168A3A00ED69EF /* SearchFromToSelectionCellViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C5FF2BB23168A3A00ED69EF /* SearchFromToSelectionCellViewModel.swift */; };
@@ -57,6 +59,8 @@
 		4C282D602303BCD100A9B9C2 /* MasterData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MasterData.swift; sourceTree = "<group>"; };
 		4C419D9623178A88008BC9DB /* AppTheme.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppTheme.swift; sourceTree = "<group>"; };
 		4C419D9823178F4C008BC9DB /* SearchResultViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchResultViewController.swift; sourceTree = "<group>"; };
+		4C419D9A23179204008BC9DB /* SearchResultViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchResultViewModel.swift; sourceTree = "<group>"; };
+		4C419D9C2317927A008BC9DB /* Vehicle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Vehicle.swift; sourceTree = "<group>"; };
 		4C4FB8ED23165B4F00D8EFA9 /* SearchFromToSelectionCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchFromToSelectionCell.swift; sourceTree = "<group>"; };
 		4C5FF2B9231682B100ED69EF /* SearchSingleSelectionCellViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchSingleSelectionCellViewModel.swift; sourceTree = "<group>"; };
 		4C5FF2BB23168A3A00ED69EF /* SearchFromToSelectionCellViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchFromToSelectionCellViewModel.swift; sourceTree = "<group>"; };
@@ -170,6 +174,7 @@
 				4C1E352522F42A86009B914B /* SearchRow.swift */,
 				4C1E352422F42A86009B914B /* SearchSection.swift */,
 				4C22B44422F968C000A24509 /* SearchForm.swift */,
+				4C419D9C2317927A008BC9DB /* Vehicle.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -192,6 +197,7 @@
 				4C92A1EF22FBCC4A006ED119 /* SearchSingleSelectionViewModel.swift */,
 				4C5FF2B9231682B100ED69EF /* SearchSingleSelectionCellViewModel.swift */,
 				4C5FF2BB23168A3A00ED69EF /* SearchFromToSelectionCellViewModel.swift */,
+				4C419D9A23179204008BC9DB /* SearchResultViewModel.swift */,
 			);
 			path = ViewModels;
 			sourceTree = "<group>";
@@ -347,12 +353,14 @@
 				4C282D612303BCD100A9B9C2 /* MasterData.swift in Sources */,
 				4C22B44922F9693D00A24509 /* SearchSingleSelectionCell.swift in Sources */,
 				4C18480D22F03BF800D2D168 /* SearchViewController.swift in Sources */,
+				4C419D9B23179204008BC9DB /* SearchResultViewModel.swift in Sources */,
 				4C4FB8EE23165B4F00D8EFA9 /* SearchFromToSelectionCell.swift in Sources */,
 				4C1E350122F3DD84009B914B /* Storyboardable.swift in Sources */,
 				4C22B44722F9691500A24509 /* SearchCoordinator.swift in Sources */,
 				4C22B44522F968C000A24509 /* SearchForm.swift in Sources */,
 				4C18480B22F03BF800D2D168 /* AppDelegate.swift in Sources */,
 				4C1E352822F42A86009B914B /* SearchRow.swift in Sources */,
+				4C419D9D2317927A008BC9DB /* Vehicle.swift in Sources */,
 				4C5FF2BA231682B100ED69EF /* SearchSingleSelectionCellViewModel.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

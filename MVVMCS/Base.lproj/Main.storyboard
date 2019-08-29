@@ -198,7 +198,7 @@
         <!--Search Result View Controller-->
         <scene sceneID="zKn-xA-mWd">
             <objects>
-                <viewController id="0ea-ac-BAP" customClass="SearchResultViewController" customModule="MVVMCS" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="SearchResultViewController" id="0ea-ac-BAP" customClass="SearchResultViewController" customModule="MVVMCS" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="B7Q-L4-2yh">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>

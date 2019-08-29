@@ -59,7 +59,8 @@ class SearchCoordinator: NavigationCoordinator<SearchRoute> {
             controller.bind(to: searchSingleSelectionViewModel)
             return .push(controller)
         case .searchResult:
-            return .none()
+            let searchResultController = SearchResultViewController.instantiate()
+            return .push(searchResultController)
         case .back:
             return .pop()
         }

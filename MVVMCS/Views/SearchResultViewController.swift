@@ -9,8 +9,11 @@
 import UIKit
 import RxCocoa
 
-class SearchResultViewController: UIViewController {
+class SearchResultViewController: UIViewController, Storyboardable, BindableType {
+    
+    var viewModel: SearchResultViewModel!
 
+    
     @IBOutlet weak var tableView: UITableView!
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -18,5 +21,7 @@ class SearchResultViewController: UIViewController {
         // Do any additional setup after loading the view.
     }
     
-    
+    func bindViewModel() {
+        
+    }
 }
