@@ -24,31 +24,21 @@ class SearchViewController: UIViewController, Storyboardable, BindableType {
         let dataSource = RxTableViewSectionedReloadDataSource<SearchSection>(configureCell: { dataSource, table, indexPath, item in
             switch indexPath.section {
             case 0:
-                switch indexPath.row {
-                case 0:
-                    let cell = table.dequeueReusableCell(withIdentifier: SearchSingleSelectionCell.identifier) as! SearchSingleSelectionCell
-                    cell.title.accept("Make")
-                    cell.value.accept(self.viewModel.searchForm.selectedMake.value)
-                    return cell
-                case 1:
-                    let cell = table.dequeueReusableCell(withIdentifier: SearchSingleSelectionCell.identifier) as! SearchSingleSelectionCell
-                    cell.title.accept("Model")
-                    cell.value.accept(self.viewModel.searchForm.selectedModel.value)
-                    return cell
-                default:
-                    return UITableViewCell()
-                }
+                guard let cell = table.dequeueReusableCell(withIdentifier: SearchSingleSelectionCell.identifier) as? SearchSingleSelectionCell,
+                let viewModel = self.viewModel.singleCellViewModel(at: indexPath.row) else { return UITableViewCell() }
+
+                cell.configure(with: viewModel)
+                return cell
+
             case 1:
-                let cell = table.dequeueReusableCell(withIdentifier: SearchFromToSelectionCell.identifier) as! SearchFromToSelectionCell
-                cell.fromValue.accept(self.viewModel.searchForm.selectedFromPrice.value)
-                cell.toValue.accept(self.viewModel.searchForm.selectedToPrice.value)
-                cell.didSelectFromButton = {
+                guard let cell = table.dequeueReusableCell(withIdentifier: SearchFromToSelectionCell.identifier) as? SearchFromToSelectionCell else { return UITableViewCell() }
+                guard let viewModel = self.viewModel.fromToCellViewModel(at: indexPath.row, selectFrom: {
                     self.viewModel.handleSelectForm?(.fromPrice)
-                }
-                
-                cell.didSelectToButton = {
+                }, selectTo: {
                     self.viewModel.handleSelectForm?(.toPrice)
-                }
+                }) else { return UITableViewCell() }
+                
+                cell.configure(with: viewModel)
                 return cell
             default:
                 return UITableViewCell()

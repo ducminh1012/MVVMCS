@@ -25,6 +25,8 @@
 		4C22B44C22F9697600A24509 /* UITableViewCell+identifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C22B44B22F9697600A24509 /* UITableViewCell+identifier.swift */; };
 		4C282D612303BCD100A9B9C2 /* MasterData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C282D602303BCD100A9B9C2 /* MasterData.swift */; };
 		4C4FB8EE23165B4F00D8EFA9 /* SearchFromToSelectionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C4FB8ED23165B4F00D8EFA9 /* SearchFromToSelectionCell.swift */; };
+		4C5FF2BA231682B100ED69EF /* SearchSingleSelectionCellViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C5FF2B9231682B100ED69EF /* SearchSingleSelectionCellViewModel.swift */; };
+		4C5FF2BC23168A3A00ED69EF /* SearchFromToSelectionCellViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C5FF2BB23168A3A00ED69EF /* SearchFromToSelectionCellViewModel.swift */; };
 		4C92A1F022FBCC4A006ED119 /* SearchSingleSelectionViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C92A1EF22FBCC4A006ED119 /* SearchSingleSelectionViewModel.swift */; };
 		4C9D9E6C22F14E01007D6DED /* SearchViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C9D9E6B22F14E01007D6DED /* SearchViewModel.swift */; };
 		4CA6C330230BE82D00E02B64 /* BindableType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CA6C32F230BE82D00E02B64 /* BindableType.swift */; };
@@ -52,6 +54,8 @@
 		4C22B44B22F9697600A24509 /* UITableViewCell+identifier.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UITableViewCell+identifier.swift"; sourceTree = "<group>"; };
 		4C282D602303BCD100A9B9C2 /* MasterData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MasterData.swift; sourceTree = "<group>"; };
 		4C4FB8ED23165B4F00D8EFA9 /* SearchFromToSelectionCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchFromToSelectionCell.swift; sourceTree = "<group>"; };
+		4C5FF2B9231682B100ED69EF /* SearchSingleSelectionCellViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchSingleSelectionCellViewModel.swift; sourceTree = "<group>"; };
+		4C5FF2BB23168A3A00ED69EF /* SearchFromToSelectionCellViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchFromToSelectionCellViewModel.swift; sourceTree = "<group>"; };
 		4C92A1EF22FBCC4A006ED119 /* SearchSingleSelectionViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchSingleSelectionViewModel.swift; sourceTree = "<group>"; };
 		4C9D9E6B22F14E01007D6DED /* SearchViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchViewModel.swift; sourceTree = "<group>"; };
 		4CA6C32F230BE82D00E02B64 /* BindableType.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BindableType.swift; sourceTree = "<group>"; };
@@ -180,6 +184,8 @@
 			children = (
 				4C9D9E6B22F14E01007D6DED /* SearchViewModel.swift */,
 				4C92A1EF22FBCC4A006ED119 /* SearchSingleSelectionViewModel.swift */,
+				4C5FF2B9231682B100ED69EF /* SearchSingleSelectionCellViewModel.swift */,
+				4C5FF2BB23168A3A00ED69EF /* SearchFromToSelectionCellViewModel.swift */,
 			);
 			path = ViewModels;
 			sourceTree = "<group>";
@@ -323,6 +329,7 @@
 			files = (
 				4C11E29E2302B004007969DC /* VehicleSearchService.swift in Sources */,
 				4C22B44C22F9697600A24509 /* UITableViewCell+identifier.swift in Sources */,
+				4C5FF2BC23168A3A00ED69EF /* SearchFromToSelectionCellViewModel.swift in Sources */,
 				4C1E350322F3DE53009B914B /* SearchSingleSelectionViewController.swift in Sources */,
 				4C9D9E6C22F14E01007D6DED /* SearchViewModel.swift in Sources */,
 				4C92A1F022FBCC4A006ED119 /* SearchSingleSelectionViewModel.swift in Sources */,
@@ -338,6 +345,7 @@
 				4C22B44522F968C000A24509 /* SearchForm.swift in Sources */,
 				4C18480B22F03BF800D2D168 /* AppDelegate.swift in Sources */,
 				4C1E352822F42A86009B914B /* SearchRow.swift in Sources */,
+				4C5FF2BA231682B100ED69EF /* SearchSingleSelectionCellViewModel.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

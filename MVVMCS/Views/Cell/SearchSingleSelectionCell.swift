@@ -13,15 +13,18 @@ class SearchSingleSelectionCell: UITableViewCell {
     
     @IBOutlet weak var titleLabel: UILabel!
     @IBOutlet weak var valueButton: UIButton!
-    var title = BehaviorRelay(value: "")
-    var value = BehaviorRelay(value: "All")
-    var options = BehaviorRelay(value: [String]())
+    
+    var viewModel: SearchSingleSelectionCellViewModel?
     var disposeBag = DisposeBag()
     
-    override func awakeFromNib() {
-        super.awakeFromNib()
+    func configure(with viewModel: SearchSingleSelectionCellViewModel) {
+        self.viewModel = viewModel
         
-        title.bind(to: titleLabel.rx.text).disposed(by: disposeBag)
-        value.bind(to: valueButton!.rx.title()).disposed(by: disposeBag)
+        viewModel.title.bind(to: titleLabel.rx.text).disposed(by: disposeBag)
+        viewModel.value.bind(to: valueButton!.rx.title()).disposed(by: disposeBag)
+        
+        viewModel.value.bind { selected in
+            self.valueButton.setTitleColor((selected == "All") ? .darkText : .blue, for: .normal)
+        }.disposed(by: disposeBag)
     }
 }

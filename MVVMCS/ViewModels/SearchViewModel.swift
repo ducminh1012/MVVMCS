@@ -30,17 +30,18 @@ class SearchViewModel {
         self.router = router
         
         let makes = VehicleSearchService.shared.allMakes
-        let prices = VehicleSearchService.shared.fromPrices
+        let fromPrices = VehicleSearchService.shared.fromPrices
+        let toPrices = VehicleSearchService.shared.toPrices
         
         makeSection = SearchSection.makeModel(items: [
             SearchRow.single(params: makes)
         ])
         
         priceSection = SearchSection.price(items: [
-            SearchRow.fromTo(from: prices, to: prices)
+            SearchRow.fromTo(from: fromPrices, to: toPrices)
         ])
 
-        self.allSections.accept([makeSection, priceSection])
+        allSections.accept([makeSection, priceSection])
         
         didSelectMake = { (make) in
             let models = VehicleSearchService.shared.models(for: make)!
@@ -97,6 +98,29 @@ class SearchViewModel {
                 self.router.trigger(.searchSingleSelection(toPrices, selected, .toPrice))
             }
             
+        }
+    }
+    
+    func singleCellViewModel(at index: Int) -> SearchSingleSelectionCellViewModel? {
+        switch index {
+        case 0:
+            return SearchSingleSelectionCellViewModel(title: "Make", options: [], value: searchForm.selectedMake.value)
+        case 1:
+            return SearchSingleSelectionCellViewModel(title: "Model", options: [], value: searchForm.selectedModel.value)
+        default:
+            return nil
+        }
+    }
+    
+    func fromToCellViewModel(at index: Int, selectFrom: (() -> Void)?, selectTo: (() -> Void)?) -> SearchFromToSelectionCellViewModel? {
+        switch index {
+        case 0:
+            let viewModel = SearchFromToSelectionCellViewModel(fromOptions: [], toOptions: [], fromValue: searchForm.selectedFromPrice.value, toValue: searchForm.selectedToPrice.value)
+            viewModel.didSelectFromButton = selectFrom
+            viewModel.didSelectToButton = selectTo
+            return viewModel
+        default:
+            return nil
         }
     }
 }

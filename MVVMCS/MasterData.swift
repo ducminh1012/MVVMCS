@@ -31,5 +31,5 @@ let masterData: [String: [String: [String]]] = [
             "All", "CT6", "DEVILLE", "SRX"
         ]
     ],
-    "prices": ["from": ["All", "500", "600", "700", "1'000"], "to": ["All", "500", "600", "700", "1'000"]]
+    "prices": ["from": ["All", "500", "600", "700", "1'000"], "to": ["All", "500", "600", "700", "1'200"]]
 ]
