@@ -19,7 +19,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="s07-9w-ME1">
-                                <rect key="frame" x="0.0" y="44" width="414" height="818"/>
+                                <rect key="frame" x="0.0" y="44" width="414" height="778"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="SearchSingleSelectionCell" id="arn-Wo-KfJ" customClass="SearchSingleSelectionCell" customModule="MVVMCS" customModuleProvider="target">
@@ -112,18 +112,33 @@
                                     </tableViewCell>
                                 </prototypes>
                             </tableView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="tpG-13-L7I">
+                                <rect key="frame" x="20" y="822" width="374" height="40"/>
+                                <color key="backgroundColor" name="controlAccentColor" catalog="System" colorSpace="catalog"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="40" id="ciH-YJ-qfm"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="20"/>
+                                <state key="normal" title="Search">
+                                    <color key="titleColor" red="0.99999600649999998" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                </state>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
+                            <constraint firstItem="tpG-13-L7I" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="20" id="BDG-1N-czc"/>
                             <constraint firstItem="s07-9w-ME1" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="ieY-M1-1gb"/>
-                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="s07-9w-ME1" secondAttribute="bottom" id="lji-4r-gmv"/>
+                            <constraint firstItem="tpG-13-L7I" firstAttribute="top" secondItem="s07-9w-ME1" secondAttribute="bottom" id="sse-sb-v8K"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="s07-9w-ME1" secondAttribute="trailing" id="toJ-4C-1h7"/>
                             <constraint firstItem="s07-9w-ME1" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" id="uIO-7y-Sc4"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="tpG-13-L7I" secondAttribute="bottom" id="xQc-fe-1TR"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="tpG-13-L7I" secondAttribute="trailing" constant="20" id="z8d-1a-KVN"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>
                     <navigationItem key="navigationItem" id="Itc-t0-o4O"/>
                     <connections>
+                        <outlet property="searchButton" destination="tpG-13-L7I" id="0Un-Al-1SN"/>
                         <outlet property="tableView" destination="s07-9w-ME1" id="Vlq-TY-REv"/>
                     </connections>
                 </viewController>
@@ -179,6 +194,55 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Uhp-cF-Ski" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1738" y="129"/>
+        </scene>
+        <!--Search Result View Controller-->
+        <scene sceneID="zKn-xA-mWd">
+            <objects>
+                <viewController id="0ea-ac-BAP" customClass="SearchResultViewController" customModule="MVVMCS" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="B7Q-L4-2yh">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="ggi-aQ-lGV">
+                                <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <prototypes>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" textLabel="7TR-gw-hko" style="IBUITableViewCellStyleDefault" id="hmC-Ci-OrT">
+                                        <rect key="frame" x="0.0" y="28" width="414" height="44"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="hmC-Ci-OrT" id="GTP-0X-G6S">
+                                            <rect key="frame" x="0.0" y="0.0" width="414" height="43.5"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" insetsLayoutMarginsFromSafeArea="NO" text="Title" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="7TR-gw-hko">
+                                                    <rect key="frame" x="20" y="0.0" width="374" height="43.5"/>
+                                                    <autoresizingMask key="autoresizingMask"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                            </subviews>
+                                        </tableViewCellContentView>
+                                    </tableViewCell>
+                                </prototypes>
+                            </tableView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="ggi-aQ-lGV" firstAttribute="top" secondItem="B7Q-L4-2yh" secondAttribute="top" id="QuF-PB-aA1"/>
+                            <constraint firstItem="ggi-aQ-lGV" firstAttribute="leading" secondItem="B7Q-L4-2yh" secondAttribute="leading" id="byQ-xg-hdr"/>
+                            <constraint firstAttribute="trailing" secondItem="ggi-aQ-lGV" secondAttribute="trailing" id="gk0-z5-Odc"/>
+                            <constraint firstAttribute="bottom" secondItem="ggi-aQ-lGV" secondAttribute="bottom" id="n7R-1h-XVx"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="oIb-ge-HxN"/>
+                    </view>
+                    <connections>
+                        <outlet property="tableView" destination="ggi-aQ-lGV" id="vDd-x2-4gj"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="4pA-HU-F9y" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1067" y="789"/>
         </scene>
     </scenes>
 </document>

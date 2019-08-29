@@ -41,11 +41,11 @@ class SearchFromToSelectionCell: UITableViewCell {
         viewModel.toValue.bind(to: toButton.rx.title()).disposed(by: disposeBag)
         
         viewModel.fromValue.bind { selected in
-            self.fromButton.setTitleColor((selected == "All") ? .darkText : .blue, for: .normal)
+            self.fromButton.setTitleColor((selected == "All") ? AppTheme.defaultTintColor : AppTheme.selectedTintColor, for: .normal)
         }.disposed(by: disposeBag)
         
         viewModel.toValue.bind { selected in
-            self.toButton.setTitleColor((selected == "All") ? .darkText : .blue, for: .normal)
+            self.toButton.setTitleColor((selected == "All") ? AppTheme.defaultTintColor : AppTheme.selectedTintColor, for: .normal)
         }.disposed(by: disposeBag)
     }
 }

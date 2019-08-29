@@ -21,4 +21,13 @@ class SearchForm {
     let allSections = BehaviorRelay<[SearchSection]>(value: [])
     
     init() {}
+    
+    func toDictionary() -> [String: String] {
+        return [
+            "make": selectedMake.value,
+            "model": selectedModel.value,
+            "price_from": selectedFromPrice.value,
+            "price_to": selectedToPrice.value
+        ]
+    }
 }

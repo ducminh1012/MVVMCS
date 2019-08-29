@@ -24,7 +24,7 @@ class SearchSingleSelectionCell: UITableViewCell {
         viewModel.value.bind(to: valueButton!.rx.title()).disposed(by: disposeBag)
         
         viewModel.value.bind { selected in
-            self.valueButton.setTitleColor((selected == "All") ? .darkText : .blue, for: .normal)
+            self.valueButton.setTitleColor((selected == "All") ? AppTheme.defaultTintColor : AppTheme.selectedTintColor, for: .normal)
         }.disposed(by: disposeBag)
     }
 }

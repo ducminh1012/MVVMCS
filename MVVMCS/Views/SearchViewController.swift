@@ -15,12 +15,13 @@ import XCoordinator
 class SearchViewController: UIViewController, Storyboardable, BindableType {
     
     @IBOutlet weak var tableView: UITableView!
+    @IBOutlet weak var searchButton: UIButton!
     
-    fileprivate let disposeBag = DisposeBag()
+    private let disposeBag = DisposeBag()
     var viewModel: SearchViewModel!
     
     func bindViewModel() {
-        
+        // Table view
         let dataSource = RxTableViewSectionedReloadDataSource<SearchSection>(configureCell: { dataSource, table, indexPath, item in
             switch indexPath.section {
             case 0:
@@ -43,7 +44,6 @@ class SearchViewController: UIViewController, Storyboardable, BindableType {
             default:
                 return UITableViewCell()
             }
-        
         })
         
         tableView.rx.itemSelected.subscribe(onNext: { (indexPath) in
@@ -55,5 +55,9 @@ class SearchViewController: UIViewController, Storyboardable, BindableType {
             .bind(to: tableView.rx.items(dataSource: dataSource))
             .disposed(by: disposeBag)
         
+        // Search button
+        searchButton.rx.tap.bind {
+            print(self.viewModel.searchForm.toDictionary())
+        }.disposed(by: disposeBag)
     }
 }
