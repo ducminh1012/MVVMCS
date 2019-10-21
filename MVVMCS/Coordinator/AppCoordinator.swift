@@ -11,18 +11,24 @@ import XCoordinator
 
 enum AppRoute: Route {
     case search
+    case main
 }
 
 class AppCoordinator: NavigationCoordinator<AppRoute> {
     
     init() {
-        super.init(initialRoute: .search)
+        super.init(initialRoute: .main)
     }
     
     override func prepareTransition(for route: AppRoute) -> NavigationTransition {
         switch route {
         case .search:
             let router = SearchCoordinator()
+            router.rootViewController.modalPresentationStyle = .fullScreen
+            return .present(router)
+        case .main:
+            let router = MainCoordinator()
+            router.rootViewController.modalPresentationStyle = .fullScreen
             return .present(router)
         }
     }
