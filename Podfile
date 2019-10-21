@@ -10,4 +10,8 @@ target 'MVVMCS' do
   pod 'SwiftyJSON'
   pod 'RxDataSources'
   pod 'XCoordinator/RxSwift'
+  
+  # Auto layout
+  pod 'SnapKit'
+  pod 'EasyPeasy'
 end
