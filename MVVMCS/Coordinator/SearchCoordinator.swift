@@ -28,12 +28,12 @@ class SearchCoordinator: NavigationCoordinator<SearchRoute> {
         switch route {
         case .search:
             let viewController = SearchViewController.instantiate()
-            searchViewModel = SearchViewModel(router: anyRouter)
+            searchViewModel = SearchViewModel(router: unownedRouter)
             viewController.bind(to: searchViewModel)
             return .push(viewController)
         case .searchSingleSelection(let options, let selected, let type):
             let controller = SearchSingleSelectionViewController.instantiate()
-            searchSingleSelectionViewModel = SearchSingleSelectionViewModel(router: anyRouter, options: options, selected: selected, type: type)
+            searchSingleSelectionViewModel = SearchSingleSelectionViewModel(router: unownedRouter, options: options, selected: selected, type: type)
             
             // handle make selection
             searchSingleSelectionViewModel.didSelectMake = { (make) in

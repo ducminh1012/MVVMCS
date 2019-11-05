@@ -17,7 +17,7 @@ enum AppRoute: Route {
 class AppCoordinator: NavigationCoordinator<AppRoute> {
     
     init() {
-        super.init(initialRoute: .main)
+        super.init(initialRoute: .search)
     }
     
     override func prepareTransition(for route: AppRoute) -> NavigationTransition {

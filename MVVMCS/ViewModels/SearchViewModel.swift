@@ -12,7 +12,7 @@ import RxDataSources
 import XCoordinator
 
 class SearchViewModel {
-    let router: AnyRouter<SearchRoute>
+    let router: UnownedRouter<SearchRoute>
     
     var searchForm = SearchForm()
     
@@ -25,7 +25,7 @@ class SearchViewModel {
     var didSelectToPrice: ((String) -> Void)?
     var didPerformSearch: ((SearchForm) -> Void)?
     
-    init(router: AnyRouter<SearchRoute>) {
+    init(router: UnownedRouter<SearchRoute>) {
         self.router = router
         
         let makes = VehicleSearchService.shared.allMakes
@@ -36,7 +36,7 @@ class SearchViewModel {
             SearchRow.single(params: makes)
         ])
         
-        var priceSection = SearchSection.price(items: [
+        let priceSection = SearchSection.price(items: [
             SearchRow.fromTo(from: fromPrices, to: toPrices)
         ])
 

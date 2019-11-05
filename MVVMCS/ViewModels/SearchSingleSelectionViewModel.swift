@@ -16,7 +16,7 @@ enum SearchFormRowType {
 }
 
 class SearchSingleSelectionViewModel {
-    let router: AnyRouter<SearchRoute>
+    let router: UnownedRouter<SearchRoute>
     let options: BehaviorRelay<[String]>
     let selectedValue: BehaviorRelay<String>
     let type: SearchFormRowType
@@ -26,7 +26,7 @@ class SearchSingleSelectionViewModel {
     var didSelectFromPrice: ((String) -> Void)?
     var didSelectToPrice: ((String) -> Void)?
     
-    init(router: AnyRouter<SearchRoute>, options: [String], selected: String, type: SearchFormRowType) {
+    init(router: UnownedRouter<SearchRoute>, options: [String], selected: String, type: SearchFormRowType) {
         self.router = router
         self.options = BehaviorRelay(value: options)
         self.selectedValue = BehaviorRelay(value: selected)

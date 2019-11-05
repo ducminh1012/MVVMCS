@@ -6,7 +6,7 @@ target 'MVVMCS' do
   use_frameworks!
 
   # Pods for MVVMCS
-  pod 'RxCocoa', '4.4.0'
+  pod 'RxCocoa'
   pod 'SwiftyJSON'
   pod 'RxDataSources'
   pod 'XCoordinator/RxSwift'

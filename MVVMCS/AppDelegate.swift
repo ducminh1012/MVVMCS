@@ -11,7 +11,7 @@ import XCoordinator
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
-    let router = AppCoordinator().anyRouter    
+    let router = AppCoordinator().strongRouter
     var window: UIWindow?
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
